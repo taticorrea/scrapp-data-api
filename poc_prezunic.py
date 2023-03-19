@@ -2,12 +2,12 @@ from bs4 import BeautifulSoup
 import requests
 import pandas as pd
 
-def get(url: str) -> str:
+def getWithBs4(url: str) -> tuple[BeautifulSoup, str]:
     if url is not None:
         response = requests.get(url)    
         page_contents = response.text
         doc = BeautifulSoup(page_contents,'html.parser')
-        return page_contents
+        return (doc,page_contents)
     else: 
         pass
 
@@ -35,15 +35,15 @@ def get(url: str) -> str:
 
 def getItensAndPrices(doc: BeautifulSoup) -> pd.DataFrame:
     try:
-        # itensFalse = doc.find_all('span', class_="prezunic-prezunic-components-0-x-ProductName false")
-        # itensFalse = [content.contents for content in itensFalse]
-        # itensFalse = [i[0] for i in itensFalse]
+        itensFalse = doc.find_all('span', class_="prezunic-prezunic-components-0-x-ProductName false")
+        itensFalse = [content.contents for content in itensFalse]
+        itensFalse = [i[0] for i in itensFalse]
 
         itensUndefined = doc.find_all('span', class_="prezunic-prezunic-components-0-x-ProductName undefined")
         itensUndefined = [content.contents for content in itensUndefined]
         itensUndefined = [i[0] for i in itensUndefined]
 
-        # allItens = itensFalse + itensUndefined
+        allItens = itensFalse + itensUndefined
         print(itensUndefined)
 
 #     int_prices = doc.find_all('span', class_="prezunic-prezunic-components-0-x-currencyInteger")
@@ -53,16 +53,16 @@ def getItensAndPrices(doc: BeautifulSoup) -> pd.DataFrame:
     # pricesFiltered = proccesPrices(int_prices)
     
     # itens_prices = list(zip(allItens,int_prices))
-        df = pd.DataFrame(itensUndefined, columns=['Item'])
+        df = pd.DataFrame(allItens, columns=['Item'])
         df.to_csv("itens_precos_prezunic.csv", index = False)
         return df
     except AttributeError as error:
         print(error)
 
 url = "https://www.prezunic.com.br/carnes-e-aves/carnes"
-# with open("main.html", "w", encoding='utf-8') as file:
-#     file.write(get(url))
-getItensAndPrices(get(url))
+with open("main.html", "w", encoding='utf-8') as file:
+    file.write(getWithBs4(url)[1])
+getItensAndPrices(getWithBs4(url)[0])
 
 # def main():
 #     first_urls = {

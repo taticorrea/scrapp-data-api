@@ -2,7 +2,7 @@ from bs4 import BeautifulSoup
 import requests
 import pandas as pd
 
-def get(url: str) -> BeautifulSoup:
+def getWithBs4(url: str) -> BeautifulSoup:
     if url is not None:
         response = requests.get(url)    
         page_contents = response.text
@@ -13,7 +13,7 @@ def get(url: str) -> BeautifulSoup:
 
 def getNextUrl(url: str) -> str:
     try:
-        url = [a['href'] for a in get(url).find('li', {'class': 'andes-pagination__button andes-pagination__button--next shops__pagination-button'})][0]
+        url = [a['href'] for a in getWithBs4(url).find('li', {'class': 'andes-pagination__button andes-pagination__button--next shops__pagination-button'})][0]
         if url is not None:
             return url
     except TypeError:
@@ -67,7 +67,7 @@ def main():
         print("Category: ", category)
         print("Sending a GET request to a url: ", first_url)
 
-        getItensAndPrices(get(getNextUrl(first_url))).to_csv(f"itens_precos_{category}_mercadolivre.csv", index = False, mode='a')
+        getItensAndPrices(getWithBs4(getNextUrl(first_url))).to_csv(f"itens_precos_{category}_mercadolivre.csv", index = False, mode='a')
         
         try:
             next_url = getNextUrl(first_url)
@@ -76,7 +76,7 @@ def main():
         try:
             while next_url:
                 print("Sending a GET request to a url: ", next_url)
-                getItensAndPrices(get(getNextUrl(next_url))).to_csv(f"itens_precos_{category}_mercadolivre.csv", header = False, index = False, mode='a')
+                getItensAndPrices(getWithBs4(getNextUrl(next_url))).to_csv(f"itens_precos_{category}_mercadolivre.csv", header = False, index = False, mode='a')
                 next_url = getNextUrl(next_url)
         except AttributeError:
             pass
