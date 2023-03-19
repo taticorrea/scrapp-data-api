@@ -1,38 +1,39 @@
-from pandas import DataFrame
 from bs4 import BeautifulSoup
+import requests
+import pandas as pd
 
-def getWithBs4(url: str) -> BeautifulSoup:
-    from requests import get
-    try:
-        response = get(url)    
+def get(url: str) -> BeautifulSoup:
+    if url is not None:
+        response = requests.get(url)    
         page_contents = response.text
         doc = BeautifulSoup(page_contents,'html.parser')
         return doc
-    except TypeError:
+    else: 
         pass
 
 def getNextUrl(url: str) -> str:
     try:
-        url = [a['href'] for a in getWithBs4(url).find('li', {'class': 'andes-pagination__button andes-pagination__button--next shops__pagination-button'})][0]
-        return url
+        url = [a['href'] for a in get(url).find('li', {'class': 'andes-pagination__button andes-pagination__button--next shops__pagination-button'})][0]
+        if url is not None:
+            return url
     except TypeError:
         pass
 
 def proccesPrices(prices: list) -> list:
-    processedPrices = []
+    pricesFiltered = []
     for price in prices:
         if "Antes:" not in price:
-            processedPrices.append(price)
+            pricesFiltered.append(price)
 
-    processedPrices = [i.replace('reais',"") for i in processedPrices if "reais" in i]
-    processedPrices = [i.replace('con',"") for i in processedPrices if "con" in i]
-    processedPrices = [i.replace('centavos',"") for i in processedPrices if "centavos" in i]
-    processedPrices = [i.replace('   ',".") for i in processedPrices if "   " in i]
-    processedPrices = [i.replace('  ',"") for i in processedPrices if "  " in i]
-    processedPrices = [float(i) for i in processedPrices]
-    return processedPrices
+    pricesFiltered = [i.replace('reais',"") for i in pricesFiltered if "reais" in i]
+    pricesFiltered = [i.replace('con',"") for i in pricesFiltered if "con" in i]
+    pricesFiltered = [i.replace('centavos',"") for i in pricesFiltered if "centavos" in i]
+    pricesFiltered = [i.replace('   ',".") for i in pricesFiltered if "   " in i]
+    pricesFiltered = [i.replace('  ',"") for i in pricesFiltered if "  " in i]
+    pricesFiltered = [float(i) for i in pricesFiltered]
+    return pricesFiltered
 
-def getItensAndPrices(doc: BeautifulSoup) -> DataFrame:
+def getItensAndPrices(doc: BeautifulSoup) -> pd.DataFrame:
     try:
         itens = doc.find_all('h2', class_="ui-search-item__title shops__item-title")
         itens = [content.contents for content in itens]
@@ -53,7 +54,7 @@ def getItensAndPrices(doc: BeautifulSoup) -> DataFrame:
         pass
 
 def main():
-    firstUrls = {
+    first_urls = {
             "Alimentos": "https://lista.mercadolivre.com.br/supermercado/alimentos-bebidas/mercearia/#origin=supermarket_navigation&from=search-frontend",
             "Bebidas": "https://lista.mercadolivre.com.br/supermercado/alimentos-bebidas/bebidas/#origin=supermarket_navigation&from=search-frontend",
             "Pets": "https://lista.mercadolivre.com.br/supermercado/animais/#origin=supermarket_navigation&from=search-frontend",
@@ -62,20 +63,20 @@ def main():
             "Bebês": "https://lista.mercadolivre.com.br/supermercado/bebes/#origin=supermarket_navigation&from=search-frontend"        
         }
 
-    for category, firstUrl in firstUrls.items():
+    for category, first_url in first_urls.items():
         print("Category: ", category)
-        print("Sending a GET request to a: ", firstUrl)
+        print("Sending a GET request to a url: ", first_url)
 
-        getItensAndPrices(getWithBs4(getNextUrl(firstUrl))).to_csv(f"itens_precos_{category}_mercadolivre.csv", index = False, mode='a')
+        getItensAndPrices(get(getNextUrl(first_url))).to_csv(f"itens_precos_{category}_mercadolivre.csv", index = False, mode='a')
         
         try:
-            next_url = getNextUrl(firstUrl)
+            next_url = getNextUrl(first_url)
         except AttributeError:
             pass
         try:
             while next_url:
-                print("Sending a GET request to a: ", next_url)
-                getItensAndPrices(getWithBs4(getNextUrl(next_url))).to_csv(f"itens_precos_{category}_mercadolivre.csv", header = False, index = False, mode='a')
+                print("Sending a GET request to a url: ", next_url)
+                getItensAndPrices(get(getNextUrl(next_url))).to_csv(f"itens_precos_{category}_mercadolivre.csv", header = False, index = False, mode='a')
                 next_url = getNextUrl(next_url)
         except AttributeError:
             pass
