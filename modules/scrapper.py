@@ -9,3 +9,7 @@ def getWithBs4(url: str) -> BeautifulSoup:
         return soup
     except:
         pass
+
+def getNextUrl(url_base, category: str, args: str, page: str) -> str:
+    url = f"{url_base}{category}?{args}" + page
+    return url
