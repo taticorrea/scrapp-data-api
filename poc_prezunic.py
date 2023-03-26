@@ -1,7 +1,7 @@
 from modules.scrapper import getWithBs4
 from modules.prezunic import getItensAndPrices, getNextUrl
 
-firstUrls = {
+basetUrls = {
         "carnes-e-aves": "https://www.prezunic.com.br/carnes-e-aves?page=",
         "automotivo":"https://www.prezunic.com.br/automotivo?page=",
         "bazar": "https://www.prezunic.com.br/bazar?page=",
@@ -16,7 +16,7 @@ firstUrls = {
         "padaria":"https://www.prezunic.com.br/padaria?page=",
     }
 
-for category, firstUrl in firstUrls.items():
+for category, firstUrl in basetUrls.items():
     print("Category: ", category)
     try:
         for page in range(1,200):
