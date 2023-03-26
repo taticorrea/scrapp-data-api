@@ -9,4 +9,3 @@ def getWithBs4(url: str) -> BeautifulSoup:
         return soup
     except:
         pass
-
