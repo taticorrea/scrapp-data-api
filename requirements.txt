@@ -1,0 +1,8 @@
+os
+json
+shutil
+pandas
+fastapi
+requests
+SQLAlchemy
+beautifulsoup4
