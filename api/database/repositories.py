@@ -31,9 +31,9 @@ class ItemPrezunicRepository:
     
     @staticmethod
     def delete_by_id(db: Session, id: str) -> None:
-        ItemPrezunic = db.query(ItemPrezunic).filter(ItemPrezunic.id == id).first()
+        itens = db.query(ItemPrezunic).filter(ItemPrezunic.id == id).first()
         if ItemPrezunic is not None:
-            db.delete(ItemPrezunic)
+            db.delete(itens)
             db.commit()
 
 class ItemMercadoLivreRepository:
@@ -66,7 +66,7 @@ class ItemMercadoLivreRepository:
     
     @staticmethod
     def delete_by_id(db: Session, id: str) -> None:
-        ItemMercadoLivre = db.query(ItemMercadoLivre).filter(ItemMercadoLivre.id == id).first()
+        itens = db.query(ItemMercadoLivre).filter(ItemMercadoLivre.id == id).first()
         if ItemMercadoLivre is not None:
-            db.delete(ItemMercadoLivre)
+            db.delete(itens)
             db.commit()
