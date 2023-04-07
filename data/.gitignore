@@ -1,0 +1,6 @@
+/beer-code-pizza
+*.csv
+*.html
+*.pyc
+*.json
+*__pycache__
