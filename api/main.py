@@ -1,8 +1,8 @@
-from database.models import ItemPrezunic,ItemMercadoLivre
+from api.database.models import ItemPrezunic,ItemMercadoLivre
 from sqlalchemy.orm import Session
-from database.repositories import ItemPrezunicRepository,ItemMercadoLivreRepository
-from database.database import engine, Base, get_db
-from database.schemas import ItemPrezunicRequest, ItemPrezunicResponse,ItemMercadoLivreRequest,ItemMercadoLivreResponse
+from api.database.repositories import ItemPrezunicRepository,ItemMercadoLivreRepository
+from api.database.database import engine, Base, get_db
+from api.database.schemas import ItemPrezunicRequest, ItemPrezunicResponse,ItemMercadoLivreRequest,ItemMercadoLivreResponse
 from fastapi import FastAPI, Depends, HTTPException, status, Response
 
 Base.metadata.create_all(bind=engine)

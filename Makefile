@@ -6,7 +6,7 @@ scrapp-data:
 	python3 data/poc_mercadolivre.py
 
 up-api:
-	uvicorn main:app --reload	
+	uvicorn api.main:app --reload
 
 get-api:
 	python3 get.py >> response.txt
