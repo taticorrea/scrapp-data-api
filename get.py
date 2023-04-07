@@ -1,10 +1,17 @@
+import json
 import requests
 
-url = "http://127.0.0.1:8000/api/prezunic/list_all_itens"
+def get(source:str):
+    url = f"http://127.0.0.1:8000/api/{source}/list_itens"
 
-payload={}
-headers = {}
+    payload={}
+    headers = {}
 
-response = requests.request("GET", url, headers=headers, data=payload)
+    response = requests.request("GET", url, headers=headers, data=payload)
 
-print(response.text)
+    print(response.text)
+
+
+sources = ["prezunic","mercadolivre"]
+for source in sources:
+    get(source)
