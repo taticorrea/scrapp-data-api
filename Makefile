@@ -1,5 +1,5 @@
 install-requirements:
-	pip install -r requirements.txt
+	python3 -m pip install -r requirements.txt
 
 scrapp-data:
 	python3 data/poc_prezunic.py
@@ -13,6 +13,3 @@ get-api:
 
 post-api:
 	python3 post.py
-
-uninstall-requirements:
-	pip freeze | xargs pip uninstall -y	
