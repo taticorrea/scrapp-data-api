@@ -44,3 +44,4 @@ for category, firstUrl in firstUrls.items():
 
 df_result = df_result.where(notnull(df_result), None)
 df_result.to_csv(f"{path}/itens_precos_{source}.csv", sep = ';', header = True, index = False, mode='a')
+
