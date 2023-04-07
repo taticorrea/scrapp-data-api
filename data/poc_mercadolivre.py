@@ -42,5 +42,5 @@ for category, firstUrl in firstUrls.items():
     df = read_csv(f"{path}/itens_precos_{category}_{source}.csv", header=0, delimiter=';')
     df_result = concat([df_result,df])
 
-df_result.to_csv(f"{path}/itens_precos_{source}.csv", sep = ';', header = True, index = False, mode='a')
 df_result = df_result.where(notnull(df_result), None)
+df_result.to_csv(f"{path}/itens_precos_{source}.csv", sep = ';', header = True, index = False, mode='a')
