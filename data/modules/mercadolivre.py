@@ -1,6 +1,6 @@
 from pandas import DataFrame
 from bs4 import BeautifulSoup
-from modules.scrapper import getWithBs4
+from data.modules.scrapper import getWithBs4
 
 def getNextUrl(url: str) -> str:
     try:
