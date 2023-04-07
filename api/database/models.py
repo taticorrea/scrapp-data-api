@@ -16,4 +16,3 @@ class ItemMercadoLivre(Base):
     nome: str = Column(String(200), nullable=True)
     preco: float = Column(Float, nullable=True)
     # fonte: str = Column(String(200), nullable=False)
-
