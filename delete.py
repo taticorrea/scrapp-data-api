@@ -13,7 +13,7 @@ def delete(source:str):
             print(response.text)
     except:
         pass
-sources = ["mercadolivre"]
+sources = ["mercadolivre","prezunic"]
 
 for source in sources:
     delete(source)
