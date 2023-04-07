@@ -1,4 +1,4 @@
-from database.database import Base
+from api.database.database import Base
 from sqlalchemy import Column, Integer, String, Float
 
 class ItemPrezunic(Base):
