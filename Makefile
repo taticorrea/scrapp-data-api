@@ -13,3 +13,6 @@ get-api:
 
 post-api:
 	python3 post.py
+
+uninstall-requirements:
+	pip freeze | xargs pip uninstall -y	
