@@ -38,7 +38,7 @@ def getItensAndPrices(soup: BeautifulSoup) -> DataFrame:
         proccesedPrices = proccesPrices(prices)
         
         itens_prices = list(zip(itens,proccesedPrices))
-        df = DataFrame(itens_prices, columns=['Item', 'Preço'])
+        df = DataFrame(itens_prices, columns=['Item', 'Preco'])
         return df
     except AttributeError:
         pass
