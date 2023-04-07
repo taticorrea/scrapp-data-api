@@ -13,3 +13,6 @@ get-api:
 
 post-api:
 	python3 post.py
+
+delete-api:
+	python3 delete.py

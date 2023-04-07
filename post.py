@@ -24,7 +24,7 @@ def post(source: str):
 
         print(response.text)
 
-sources = ["prezunic","mercadolivre"]
+sources = ["mercadolivre"]
 for source in sources:
     # print(source)
     post(source)
