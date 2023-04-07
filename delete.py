@@ -1,15 +1,18 @@
 import requests
 
 def delete(source:str):
-    for i in range(0,11095):
-        url = f"http://127.0.0.1:8000/api/{source}/delete_item/{i}"
+    try:
+        for i in range(0,11095):
+            url = f"http://127.0.0.1:8000/api/{source}/delete_item/{i}"
 
-        payload={}
-        headers = {}
+            payload={}
+            headers = {}
 
-        response = requests.request("DELETE", url, headers=headers, data=payload)
+            response = requests.request("DELETE", url, headers=headers, data=payload)
 
-        print(response.text)
+            print(response.text)
+    except:
+        pass
 sources = ["mercadolivre"]
 
 for source in sources:
