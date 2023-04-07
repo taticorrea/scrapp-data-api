@@ -1,4 +1,4 @@
-from database.models import ItemPrezunic, ItemMercadoLivre
+from api.database.models import ItemPrezunic, ItemMercadoLivre
 from sqlalchemy.orm import Session
 
 class ItemPrezunicRepository:
