@@ -2,7 +2,7 @@ import requests
 
 def delete(source:str):
     try:
-        for i in range(0,1130):
+        for i in range(0,2):
             url = f"http://127.0.0.1:8000/api/{source}/delete_item/{i}"
 
             payload={}

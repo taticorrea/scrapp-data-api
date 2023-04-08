@@ -4,3 +4,4 @@
 *.pyc
 *.json
 *__pycache__
+*.sqlite3

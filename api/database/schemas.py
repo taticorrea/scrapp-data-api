@@ -1,30 +1,28 @@
 from pydantic import BaseModel
 
-class ItemMercadoLivreBase(BaseModel):
+class ItemPrezunicBase(BaseModel):
     id: int
     nome: str
     preco: float
-    # fonte: str
 
-class ItemMercadoLivreRequest(ItemMercadoLivreBase):
+class ItemPrezunicRequest(ItemPrezunicBase):
     ...
 
-class ItemMercadoLivreResponse(ItemMercadoLivreBase):
+class ItemPrezunicResponse(ItemPrezunicBase):
     id: int
 
     class Config:
         orm_mode = True
 
-class ItemPrezunic(BaseModel):
+class ItemMercadoLivreBase(BaseModel):
     id: int
     nome: str
     preco: float
-    # fonte: str
 
-class ItemPrezunicRequest(ItemPrezunic):
+class ItemMercadoLivreRequest(ItemMercadoLivreBase):
     ...
 
-class ItemPrezunicResponse(ItemPrezunic):
+class ItemMercadoLivreResponse(ItemMercadoLivreBase):
     id: int
 
     class Config:

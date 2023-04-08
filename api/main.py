@@ -14,10 +14,10 @@ def create(request: ItemPrezunicRequest, db: Session = Depends(get_db)):
     item = ItemPrezunicRepository.save(db, ItemPrezunic(**request.dict()))
     return ItemPrezunicResponse.from_orm(item)
 
-@app.get("/api/prezunic/list_itens", response_model=list[ItemMercadoLivreResponse])
+@app.get("/api/prezunic/list_itens", response_model=list[ItemPrezunicResponse])
 def find_all(db: Session = Depends(get_db)):
-    cursos = ItemPrezunicRepository.find_all(db)
-    return [ItemPrezunicResponse.from_orm(curso) for curso in cursos]
+    itens = ItemPrezunicRepository.find_all(db)
+    return [ItemPrezunicResponse.from_orm(item) for item in itens]
 
 @app.delete("/api/prezunic/delete_item/{id}", status_code=status.HTTP_204_NO_CONTENT)
 def delete_by_id(id: int, db: Session = Depends(get_db)):
@@ -35,8 +35,8 @@ def create(request: ItemMercadoLivreRequest, db: Session = Depends(get_db)):
 
 @app.get("/api/mercadolivre/list_itens", response_model=list[ItemMercadoLivreResponse])
 def find_all(db: Session = Depends(get_db)):
-    cursos = ItemMercadoLivreRepository.find_all(db)
-    return [ItemMercadoLivreResponse.from_orm(curso) for curso in cursos]
+    itens = ItemMercadoLivreRepository.find_all(db)
+    return [ItemMercadoLivreResponse.from_orm(item) for item in itens]
 
 @app.delete("/api/mercadolivre/delete_item/{id}", status_code=status.HTTP_204_NO_CONTENT)
 def delete_by_id(id: int, db: Session = Depends(get_db)):
