@@ -56,7 +56,9 @@ Para fazer o post na API com os dados dos supermercados é preciso preparar o am
 
 #### Clonar repositório
 
+```
 git clone https://github.com/beer-code-pizza/data.git
+```
 
 #### Criar ambiente virtual
 No MacOS - [virtualenvwrapper - via brew](https://formulae.brew.sh/formula/virtualenvwrapper)
