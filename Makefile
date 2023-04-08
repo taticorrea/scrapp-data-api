@@ -9,7 +9,7 @@ up-api:
 	uvicorn api.main:app --reload
 
 get-api:
-	python3 get.py >> response.txt
+	python3 get.py > response.txt
 
 post-api:
 	python3 post.py
