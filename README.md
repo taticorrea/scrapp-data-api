@@ -24,8 +24,6 @@ Para fazer o post na API com os dados dos supermercados é preciso preparar o am
 ├───post.py
 ├───README.md
 ├───requirements.txt
-├───response.txt
-├───tree.txt
 │   
 ├───api
 │   ├───main.py
