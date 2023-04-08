@@ -62,6 +62,8 @@ git clone https://github.com/beer-code-pizza/data.git
 
 #### Criar ambiente virtual
 No MacOS - [virtualenvwrapper - via brew](https://formulae.brew.sh/formula/virtualenvwrapper)
+
+
 No Windows - [venv - Windows PowerShell](https://docs.python.org/pt-br/dev/library/venv.html)
 
 #### Entrar no ambiente virtual 
