@@ -15,19 +15,19 @@ else:
 first_urls = {
         "carnes-e-aves": "https://www.prezunic.com.br/carnes-e-aves?page=1",
         "bebida-alcoolica":"https://www.prezunic.com.br/bebida-alcoolica?page=1",
-        # "bebida-nao-alcoolica": "https://www.prezunic.com.br/bebida-nao-alcoolica?page=",
-        # "congelados":"https://www.prezunic.com.br/congelados?page=",
-        # "frios-e-laticinios": "https://www.prezunic.com.br/frios-e-laticinios?page=",
-        # "higiene-e-beleza":"https://www.prezunic.com.br/higiene-e-beleza?page=",
-        # "hortifruti": "https://www.prezunic.com.br/hortifruti?page=",
-        # "limpeza":"https://www.prezunic.com.br/limpeza?page=",
-        # "mercearia": "https://www.prezunic.com.br/mercearia?page="
+        "bebida-nao-alcoolica": "https://www.prezunic.com.br/bebida-nao-alcoolica?page=",
+        "congelados":"https://www.prezunic.com.br/congelados?page=1",
+        "frios-e-laticinios": "https://www.prezunic.com.br/frios-e-laticinios?page=1",
+        "higiene-e-beleza":"https://www.prezunic.com.br/higiene-e-beleza?page=1",
+        "hortifruti": "https://www.prezunic.com.br/hortifruti?page=1",
+        "limpeza":"https://www.prezunic.com.br/limpeza?page=1",
+        "mercearia": "https://www.prezunic.com.br/mercearia?page=1"
         }
 
 for category, first_url in first_urls.items():
     print("Category: ", category)
     print("Sending a GET request to a: ", first_url)
-    # get_itens(path, category, getWithBs4(first_url))
+    get_itens(path, category, getWithBs4(first_url))
     max_page = get_max_pages(first_url)
 
     for page_number in range(2,max_page+1):
