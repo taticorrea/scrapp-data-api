@@ -2,10 +2,10 @@ import requests
 from pandas import read_csv
 
 def delete(source:str):
-    df = read_csv(f"data/{source}_data/itens_precos_{source}.csv", header=0,sep=';', engine='python')
+    # df = read_csv(f"data/{source}_data/itens_precos_{source}.csv", header=0,sep=';', engine='python')
 
     try:
-        for i in range(df.shape[0]):
+        for i in range(256):
             url = f"http://127.0.0.1:8000/api/{source}/delete_item/{i}"
 
             payload={}
@@ -16,7 +16,7 @@ def delete(source:str):
             print(response.text)
     except:
         pass
-sources = ["prezunic","mercadolivre"]
+sources = ["prezunic"]
 
 for source in sources:
     delete(source)
