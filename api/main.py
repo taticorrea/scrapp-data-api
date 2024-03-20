@@ -14,7 +14,6 @@ app = FastAPI()
 def create(items: List[ItemPrezunicRequest], db: Session = Depends(get_db)):
     db_items = []
     for item in items:
-        # print(type(item))
         print(item)
         db_item = ItemPrezunicRepository.save(db, ItemPrezunic(**item.dict()))
         db_items.append(db_item)
@@ -33,27 +32,3 @@ def delete_by_id(id: int, db: Session = Depends(get_db)):
         )
     ItemPrezunicRepository.delete_by_id(db, id)
     return Response(status_code=status.HTTP_204_NO_CONTENT)
-
-# @app.delete("/api/prezunic/delete_all/", status_code=status.HTTP_204_NO_CONTENT)
-# def delete_all(db: Session = Depends(get_db)):
-#     ItemPrezunicRepository.delete_all(db)
-#     return Response(status_code=status.HTTP_204_NO_CONTENT)
-
-# @app.post("/api/mercadolivre/add_itens", response_model=ItemMercadoLivreResponse, status_code=status.HTTP_201_CREATED)
-# def create(request: ItemMercadoLivreRequest, db: Session = Depends(get_db)):
-#     item = ItemMercadoLivreRepository.save(db, ItemMercadoLivre(**request.dict()))
-#     return ItemMercadoLivreResponse.from_orm(item)
-
-# @app.get("/api/mercadolivre/list_itens", response_model=list[ItemMercadoLivreResponse])
-# def find_all(db: Session = Depends(get_db)):
-#     itens = ItemMercadoLivreRepository.find_all(db)
-#     return [ItemMercadoLivreResponse.from_orm(item) for item in itens]
-
-# @app.delete("/api/mercadolivre/delete_item/{id}", status_code=status.HTTP_204_NO_CONTENT)
-# def delete_by_id(id: int, db: Session = Depends(get_db)):
-#     if not ItemMercadoLivreRepository.exists_by_id(db, id):
-#         raise HTTPException(
-#             status_code=status.HTTP_404_NOT_FOUND, detail="Item não encontrado"
-#         )
-#     ItemMercadoLivreRepository.delete_by_id(db, id)
-#     return Response(status_code=status.HTTP_204_NO_CONTENT)
