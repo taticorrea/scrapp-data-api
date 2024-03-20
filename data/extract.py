@@ -35,7 +35,7 @@ def scrapp_prezunic():
             os.makedirs(path)
 
         get_itens(source, path, category, parse_html_content(first_url))
-        max_page = get_max_pages(first_url)
+        max_page = get_max_pages(first_url, source)
 
         try:
             for page_number in range(2,max_page+1):

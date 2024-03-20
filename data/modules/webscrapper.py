@@ -53,13 +53,14 @@ def get_itens(source: str, path: str, category: str, soup: BeautifulSoup) -> Dat
             pass
 
 
-def get_max_pages(url: str) -> int:
+def get_max_pages(url: str, source: str) -> int:
     soup = parse_html_content(url)
-    span_class = soup.find("span", {"class":"prezunic-prezunic-components-2-x-showingPages"})
-    numero = re.search(r'Página \d+ de (\d+)', span_class.text)
-    if numero:
-        max_pages = int(numero.group(1))
-        return max_pages
+    if source=="prezunic":
+        span_class = soup.find("span", {"class":"prezunic-prezunic-components-2-x-showingPages"})
+        numero = re.search(r'Página \d+ de (\d+)', span_class.text)
+        if numero:
+            max_pages = int(numero.group(1))
+            return max_pages
 
 def get_next_url(source: str, args: str, page: str, category: str) -> str:
     if source=="prezunic":
