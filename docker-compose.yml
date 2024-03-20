@@ -1,0 +1,12 @@
+version: '3'
+services:
+  myapp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8000"
+    environment:
+      NAME: "Docker"
+    volumes:
+      - ./api:/app/api
