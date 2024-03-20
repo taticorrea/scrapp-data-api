@@ -7,3 +7,5 @@
 venv-scrap-data-api/*
 data/poc_mercadolivre.py
 data/poc_paodeacucar.py
+data/modules/mercadolivre.py
+data/modules/paodeacucar.py
