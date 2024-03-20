@@ -4,4 +4,6 @@
 *.pyc
 *.json
 *__pycache__
-db.sqlite3
+venv-scrap-data-api/*
+data/poc_mercadolivre.py
+data/poc_paodeacucar.py
