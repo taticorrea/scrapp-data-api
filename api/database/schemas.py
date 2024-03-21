@@ -31,31 +31,31 @@ class MercadoResponse(Mercado):
     class Config:
         orm_mode = True
 
-class Preco(BaseModel):
-    valor: float
-    item_id: int
-    mercado_id: int
+# class Preco(BaseModel):
+#     valor: float
+#     item_id: int
+#     mercado_id: int
 
-class PrecoRequest(Preco):
-    pass
+# class PrecoRequest(Preco):
+#     pass
 
-class PrecoResponse(Preco):
-    id: int
-    item: Item
-    mercado: Mercado
+# class PrecoResponse(Preco):
+#     id: int
+#     item: Item
+#     mercado: Mercado
 
-    class Config:
-        orm_mode = True
+#     class Config:
+#         orm_mode = True
 
-class Categoria(BaseModel):
-    nome: str
-    descricao: Optional[str] = None
+# class Categoria(BaseModel):
+#     nome: str
+#     descricao: Optional[str] = None
 
-class CategoriaRequest(Categoria):
-    pass
+# class CategoriaRequest(Categoria):
+#     pass
 
-class CategoriaResponse(Categoria):
-    id: int
+# class CategoriaResponse(Categoria):
+#     id: int
 
-    class Config:
-        orm_mode = True        
+#     class Config:
+#         orm_mode = True        
