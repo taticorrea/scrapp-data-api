@@ -32,11 +32,11 @@ def post(sources: dict):
                     data.append(objeto_json)
     
     json_data = json.dumps(data[0])
-    print("Sending a POTS request to a: ", url)
+    print("Sending a POST request to a: ", url)
 
     try:
         response = requests.request("POST", url, headers=headers, data=json_data)
-        print(response.text)
+        print('Response Code:', response.status_code)
     except:
         pass
 

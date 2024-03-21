@@ -26,17 +26,17 @@ def find(db: Session = Depends(get_db), id: int = None, fonte: str = None ):
 
 @app.delete("/api/v2/delete-item/", status_code=status.HTTP_204_NO_CONTENT)
 def delete(id: int = None, fonte: str = None, db: Session = Depends(get_db)):
-    if id is not None and fonte is None:
-        if not ItemRepository.exists_by_id(db, id):
-            raise HTTPException(
-                status_code=status.HTTP_404_NOT_FOUND, detail="Item não encontrado"
-            )
-    elif fonte is not None and id is None:
-        if not ItemRepository.exists_by_font(db, id):
-            raise HTTPException(
-                status_code=status.HTTP_404_NOT_FOUND, detail="Fonte não encontrada"
-            )
-    else:
+    # if id is not None and fonte is None:
+    #     if not ItemRepository.exists_by_id(db, id):
+    #         raise HTTPException(
+    #             status_code=status.HTTP_404_NOT_FOUND, detail="Item não encontrado"
+    #         )
+    # elif fonte is not None and id is None:
+    #     if not ItemRepository.exists_by_font(db, id):
+    #         raise HTTPException(
+    #             status_code=status.HTTP_404_NOT_FOUND, detail="Fonte não encontrada"
+    #         )
+    if id is None and fonte is None:
         raise HTTPException(
                         status_code=status.HTTP_404_NOT_FOUND, detail="Argumentos necessários"
                     )

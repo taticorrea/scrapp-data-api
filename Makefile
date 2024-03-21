@@ -14,7 +14,7 @@ load-data-api:
 	python3 data/load.py
 
 get-data-api:
-	python3 data/get.py > response.txt
+	python3 data/get.py
 
 delete-data-api:
 	python3 data/delete.py
