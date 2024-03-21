@@ -43,21 +43,3 @@ class ItemRepository:
             db.add(Item)
         db.commit()
         return Item
-
-
-    # @staticmethod
-    # def find_all(db: Session) -> list[Item]:
-    #     return db.query(Item).all()
-    
-    # @staticmethod
-    # def delete_by_id(db: Session, id: int) -> None:
-    #     itens = db.query(Item).filter(Item.id == id)
-    #     itens.delete()
-    #     db.commit()   
-
-
-    # @staticmethod
-    # def delete_all(db: Session) -> None:
-    #     itens = db.query(Item).all()
-    #     db.delete(itens)
-    #     db.commit()

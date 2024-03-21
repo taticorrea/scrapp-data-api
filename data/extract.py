@@ -6,8 +6,6 @@ from modules.webscrapper import (parse_html_content,
                               get_next_url)
 
 def scrapp_prezunic():
-
-
     args = "page"
     first_urls = {
             "carnes-e-aves":        f"https://www.prezunic.com.br/carnes-e-aves?{args}=1",

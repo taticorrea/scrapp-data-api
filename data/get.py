@@ -1,5 +1,4 @@
-import json
-import requests
+from requests import request
 
 def get(source:str):
     url = f"http://127.0.0.1:8000/api/v2/item?fonte={source}"
@@ -10,10 +9,10 @@ def get(source:str):
     }
 
     print("Sending a GET request to a: ", url)
-    response = requests.request("GET", url, headers=headers, data=payload)
+    response = request("GET", url, headers=headers, data=payload)
 
     print('Response Code:', response.status_code)
-    # print('Response Data:', response.text)
+    print('Response Data:', response.text)
 
 
 sources = ["Prezunic"]

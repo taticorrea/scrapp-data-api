@@ -1,5 +1,4 @@
-import requests
-from pandas import read_csv
+from requests import request
 
 def delete(source:str):
     try:
@@ -11,7 +10,7 @@ def delete(source:str):
         }
 
         print("Sending a DELETE request to a: ", url)
-        response = requests.request("DELETE", url, headers=headers, data=payload)
+        response = request("DELETE", url, headers=headers, data=payload)
         print('Response Code:', response.status_code)
     except:
         pass    

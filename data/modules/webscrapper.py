@@ -1,5 +1,5 @@
-import re
 import json
+from re import search
 from pandas import DataFrame
 from bs4 import BeautifulSoup
 from selenium import webdriver
@@ -57,7 +57,7 @@ def get_max_pages(url: str, source: str) -> int:
     soup = parse_html_content(url)
     if source=="prezunic":
         span_class = soup.find("span", {"class":"prezunic-prezunic-components-2-x-showingPages"})
-        numero = re.search(r'Página \d+ de (\d+)', span_class.text)
+        numero = search(r'Página \d+ de (\d+)', span_class.text)
         if numero:
             max_pages = int(numero.group(1))
             return max_pages
