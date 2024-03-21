@@ -4,20 +4,20 @@ from pandas import read_csv
 
 sources = {
     "prezunic" : [
-        "carnes-e-aves",
-        "bebida-alcoolica",
-        "bebida-nao-alcoolica",
-        "congelados"
-        "frios-e-laticinios",
-        "higiene-e-beleza",
-        "hortifruti",
-        "limpeza",
-        "mercearia",
+        "carnes-e-aves"
+        # "bebida-alcoolica",
+        # "bebida-nao-alcoolica",
+        # "congelados"
+        # "frios-e-laticinios",
+        # "higiene-e-beleza",
+        # "hortifruti",
+        # "limpeza",
+        # "mercearia",
     ]
 }
 
 def post(sources: dict):
-    url = f"http://127.0.0.1:8000/api/{list(sources.keys())[0]}/add_itens"
+    url = f"http://127.0.0.1:8000/api/v2/create-item"
     headers = {
     'Content-Type': 'application/json'
     }
