@@ -1,26 +1,26 @@
 from typing import List, Optional
 from sqlalchemy.orm import Session
-from api.database.models import Item
+from api.database.models import ItemModel
 
 class ItemRepository:
     @staticmethod
-    def find(db: Session, id: int = None, fonte: str = None) -> Item:
+    def find(db: Session, id: int = None, mercado_id: str = None) -> ItemModel:
         if id is not None:
-            itens = db.query(Item).filter(Item.id == id)
-        elif fonte is not None:
-            itens = db.query(Item).filter(Item.fonte == fonte)
+            itens = db.query(ItemModel).filter(ItemModel.id == id)
+        elif mercado_id is not None:
+            itens = db.query(ItemModel).filter(ItemModel.mercado_id == mercado_id)
         else:
-            itens = db.query(Item).all()
+            itens = db.query(ItemModel).all()
         return itens
 
     @staticmethod
-    def delete(db: Session, id: int = None, fonte: str = None) -> None:
+    def delete(db: Session, id: int = None, mercado_id: str = None) -> None:
         if id is not None:
-            itens = db.query(Item).filter(Item.id == id)
+            itens = db.query(ItemModel).filter(ItemModel.id == id)
             itens.delete()
             db.commit()
-        elif fonte is not None:
-            itens = db.query(Item).filter(Item.fonte == fonte)
+        elif mercado_id is not None:
+            itens = db.query(ItemModel).filter(ItemModel.mercado_id == mercado_id)
             itens.delete()
             db.commit()
         else:
@@ -28,17 +28,17 @@ class ItemRepository:
 
     @staticmethod
     def exists_by_id(db: Session, id: int) -> bool:
-        return db.query(Item).filter(Item.id == id).first() is not None
+        return db.query(ItemModel).filter(ItemModel.id == id).first() is not None
     
     @staticmethod
-    def exists_by_font(db: Session, fonte: str) -> bool:
-        return db.query(Item).filter(Item.fonte == fonte).first() is not None     
+    def exists_by_font(db: Session, mercado_id: int) -> bool:
+        return db.query(ItemModel).filter(ItemModel.mercado_id == mercado_id).first() is not None     
     
     @staticmethod
-    def create(db: Session, Item: Item) -> list[Item]:
-        if Item.id:
-            db.merge(Item)
+    def create(db: Session, ItemModel: ItemModel) -> list[ItemModel]:
+        if ItemModel.id:
+            db.merge(ItemModel)
         else:
-            db.add(Item)
+            db.add(ItemModel)
         db.commit()
-        return Item
+        return ItemModel

@@ -27,11 +27,11 @@ def transform(sources: dict) -> list:
             df["categoria"] = category
             
             if source=="prezunic":
-                df["fonte"] = "prezunic"
+                df["mercado_id"] = 1
             elif source=="paodeacucar":
-                df["fonte"] = "paodeacucar"
+                df["mercado_id"] = 2
             elif source=="mercadolivre":
-                df["fonte"] = "mercadolivre"
+                df["mercado_id"] = 3
             
             df.to_json(f"data/{source}_data/{category}/{category}.json", orient='records', lines=False)
 

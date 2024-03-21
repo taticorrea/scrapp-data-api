@@ -5,8 +5,8 @@ class Item(BaseModel):
     id: int
     item: str
     preco: float
-    fonte: str
     categoria: str
+    mercado_id: int
 
 class ItemRequest(Item):
     pass
@@ -17,19 +17,19 @@ class ItemResponse(Item):
     class Config:
         orm_mode = True
 
-class Mercado(BaseModel):
-    nome: str
-    localizacao: Optional[str] = None
+# class Mercado(BaseModel):
+#     nome: str
+#     localizacao: Optional[str] = None
 
-class MercadoRequest(Mercado):
-    pass
+# class MercadoRequest(Mercado):
+#     pass
 
-class MercadoResponse(Mercado):
-    id: int
-    itens: List[Item] = []
+# class MercadoResponse(Mercado):
+#     id: int
+#     itens: List[Item] = []
 
-    class Config:
-        orm_mode = True
+#     class Config:
+#         orm_mode = True
 
 # class Preco(BaseModel):
 #     valor: float

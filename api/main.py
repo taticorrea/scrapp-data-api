@@ -15,20 +15,30 @@ app = FastAPI()
 def create(items: List[ItemRequest], db: Session = Depends(get_db)):
     db_items = []
     for item in items:
-        db_item = ItemRepository.create(db, Item(**item.dict()))
+        db_item = ItemRepository.create(db, ItemModel(**item.dict()))
         db_items.append(db_item)
     return Response(status_code=status.HTTP_201_CREATED)
 
-@app.get("/api/v2/item/", response_model=list[ItemResponse])
-def find(db: Session = Depends(get_db), id: int = None, fonte: str = None ):     
-    itens = ItemRepository.find(db, id, fonte)
+@app.get("/api/v2/item/", response_model=list[ItemResponse],status_code=status.HTTP_200_OK)
+def find(db: Session = Depends(get_db), id: int = None, mercado_id: int = None ):     
+    if mercado_id is not None:
+        if not ItemRepository.exists_by_font(db, mercado_id):
+            raise HTTPException(
+                            status_code=status.HTTP_404_NOT_FOUND, detail="Mercado não encontrado"
+                        )
+    if id is not None:
+        if not ItemRepository.exists_by_id(db, mercado_id):
+            raise HTTPException(
+                            status_code=status.HTTP_404_NOT_FOUND, detail="ID não encontrado"
+                        )        
+    itens = ItemRepository.find(db, id, mercado_id)
     return [ItemResponse.from_orm(item) for item in itens]
 
 @app.delete("/api/v2/delete-item/", status_code=status.HTTP_204_NO_CONTENT)
-def delete(id: int = None, fonte: str = None, db: Session = Depends(get_db)):
-    if id is None and fonte is None:
+def delete(id: int = None, mercado_id: int = None, db: Session = Depends(get_db)):
+    if id is None and mercado_id is None:
         raise HTTPException(
                         status_code=status.HTTP_404_NOT_FOUND, detail="Argumentos necessários"
                     )
-    ItemRepository.delete(db, id, fonte)
+    ItemRepository.delete(db, id, mercado_id)
     return Response(status_code=status.HTTP_204_NO_CONTENT)
