@@ -4,14 +4,14 @@ from requests import request
 sources = {
     "prezunic" : [
         "carnes-e-aves"
-        "bebida-alcoolica",
-        "bebida-nao-alcoolica",
-        "congelados"
-        "frios-e-laticinios",
-        "higiene-e-beleza",
-        "hortifruti",
-        "limpeza",
-        "mercearia",
+        # "bebida-alcoolica",
+        # "bebida-nao-alcoolica",
+        # "congelados"
+        # "frios-e-laticinios",
+        # "higiene-e-beleza",
+        # "hortifruti",
+        # "limpeza",
+        # "mercearia",
     ]
 }
 

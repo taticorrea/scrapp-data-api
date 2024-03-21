@@ -3,7 +3,6 @@ from sqlalchemy.orm import Session
 from api.database.models import Item
 
 class ItemRepository:
-
     @staticmethod
     def find(db: Session, id: int = None, fonte: str = None) -> Item:
         if id is not None:

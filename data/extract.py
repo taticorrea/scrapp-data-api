@@ -1,4 +1,6 @@
 import os
+from time import time
+from datetime import datetime
 from shutil import rmtree
 from modules.webscrapper import (parse_html_content,
                               get_itens,
@@ -23,7 +25,9 @@ def scrapp_prezunic():
         source = "prezunic"
         path = f"data/{source}_data/{category}/"
         
-        print("Category: ", category)
+        start_time = time()
+        print(f"{datetime.now()} Category: ", category)
+        max_page = get_max_pages(first_url, source)
         print("Sending a GET request to a: ", first_url)
 
         if os.path.exists(path):
@@ -33,14 +37,16 @@ def scrapp_prezunic():
             os.makedirs(path)
 
         get_itens(source, path, category, parse_html_content(first_url))
-        max_page = get_max_pages(first_url, source)
 
         try:
             for page_number in range(2,max_page+1):
                 next_url = get_next_url(source,args,str(page_number), category)
                 
-                print("Sending a GET request to a: ", next_url) 
+                print(f"{datetime.now()} Sending a GET request to a: ", next_url) 
                 get_itens(source, path, category, parse_html_content(next_url))
+                end_time = time()
+                execution_time = end_time - start_time
+                print(f'{datetime.now()} Execution time: ', round(execution_time,1),' seconds')
         except TypeError:
             pass
 

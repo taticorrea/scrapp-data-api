@@ -7,6 +7,10 @@ extract-data:
 transform-data:	
 	python3 data/transform.py
 
+extract-transform-data:
+	python3 data/extract.py
+	python3 data/transform.py	
+
 up-api:
 	uvicorn api.main:app --reload
 

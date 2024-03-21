@@ -1,7 +1,7 @@
 from requests import request
 
 def get(source:str):
-    url = f"http://127.0.0.1:8000/api/v2/item?fonte={source}"
+    url = f"http://127.0.0.1:8000/api/v2/item/?fonte={source}"
 
     payload={}
     headers = {
@@ -15,6 +15,6 @@ def get(source:str):
     print('Response Data:', response.text)
 
 
-sources = ["Prezunic"]
+sources = ["prezunic"]
 for source in sources:
     get(source)
