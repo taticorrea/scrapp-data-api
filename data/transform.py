@@ -18,7 +18,7 @@ sources = {
 def transform(sources: dict) -> list:
     for source, categories in sources.items():
         for category in categories:
-            df = read_csv(f"data/{source}_data/{category}/{category}.csv", sep=';',header=None,names=["id","item",'preco'],index_col=0)
+            df = read_csv(f"data/{source}_data/{category}/{category}.csv", sep=';',header=None,names=["id","nome",'preco'],index_col=0)
             df.drop_duplicates(inplace=True)
             df.dropna(inplace=True)
             df.reset_index(drop=True,inplace=True)

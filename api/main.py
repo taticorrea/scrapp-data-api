@@ -11,6 +11,19 @@ Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
+@app.post("/api/v2/create-mercado", response_model=MercadoResponse, status_code=status.HTTP_409_CONFLICT)
+def create(items: List[MercadoRequest], db: Session = Depends(get_db)):
+    db_items = []
+    for item in items:
+        db_item = MercadoRepository.create(db, MercadoModel(**item.dict()))
+        db_items.append(db_item)
+    return Response(status_code=status.HTTP_201_CREATED)
+
+@app.get("/api/v2/mercado/", response_model=list[MercadoResponse],status_code=status.HTTP_200_OK)
+def find(db: Session = Depends(get_db)):     
+    mercados = MercadoRepository.find(db, MercadoModel)
+    return [MercadoResponse.from_orm(mercado) for mercado in mercados]
+
 @app.post("/api/v2/create-item", response_model=ItemResponse, status_code=status.HTTP_409_CONFLICT)
 def create(items: List[ItemRequest], db: Session = Depends(get_db)):
     db_items = []

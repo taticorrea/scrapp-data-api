@@ -1,6 +1,6 @@
 from typing import List, Optional
 from sqlalchemy.orm import Session
-from api.database.models import ItemModel
+from api.database.models import *
 
 class ItemRepository:
     @staticmethod
@@ -42,3 +42,18 @@ class ItemRepository:
             db.add(ItemModel)
         db.commit()
         return ItemModel
+    
+class MercadoRepository:
+    @staticmethod
+    def find(db: Session, MercadoModel: MercadoModel) -> MercadoModel:
+        mercados = db.query(MercadoModel).all()
+        return mercados
+
+    @staticmethod
+    def create(db: Session, MercadoModel: MercadoModel) -> list[MercadoModel]:
+        if MercadoModel.id:
+            db.merge(MercadoModel)
+        else:
+            db.add(MercadoModel)
+        db.commit()
+        return MercadoModel    

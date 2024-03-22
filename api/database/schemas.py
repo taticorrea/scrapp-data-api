@@ -3,7 +3,7 @@ from pydantic import BaseModel
 
 class Item(BaseModel):
     id: int
-    item: str
+    nome: str
     preco: float
     categoria: str
     mercado_id: int
@@ -17,19 +17,18 @@ class ItemResponse(Item):
     class Config:
         orm_mode = True
 
-# class Mercado(BaseModel):
-#     nome: str
-#     localizacao: Optional[str] = None
+class Mercado(BaseModel):
+    id: int
+    nome: str
 
-# class MercadoRequest(Mercado):
-#     pass
+class MercadoRequest(Mercado):
+    pass
 
-# class MercadoResponse(Mercado):
-#     id: int
-#     itens: List[Item] = []
+class MercadoResponse(Mercado):
+    id: int
 
-#     class Config:
-#         orm_mode = True
+    class Config:
+        orm_mode = True
 
 # class Preco(BaseModel):
 #     valor: float
