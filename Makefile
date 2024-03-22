@@ -5,16 +5,20 @@ extract-data:
 	python3 data/extract.py
 
 transform-data:	
-	python3 transform.py
+	python3 data/transform.py
+
+extract-transform-data:
+	python3 data/extract.py
+	python3 data/transform.py	
 
 up-api:
 	uvicorn api.main:app --reload
 
 load-data-api:
-	python3 load.py
+	python3 data/load.py
 
 get-data-api:
-	python3 get.py > response.txt
+	python3 data/get.py
 
 delete-data-api:
-	python3 delete.py
+	python3 data/delete.py

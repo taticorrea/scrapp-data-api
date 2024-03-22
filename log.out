@@ -1,0 +1,14 @@
+2024-03-20 22:58:26.714714 Category:  carnes-e-aves
+Páginas:  12
+Sending a GET request to a:  https://www.prezunic.com.br/carnes-e-aves?page=1
+2024-03-20 22:58:32.192889 Sending a GET request to a:  https://www.prezunic.com.br/carnes-e-aves?page=2
+2024-03-20 22:58:34.746599 Execution time:  8.03
+2024-03-20 22:58:34.746625 Sending a GET request to a:  https://www.prezunic.com.br/carnes-e-aves?page=3
+2024-03-20 22:58:37.428484 Execution time:  10.71
+2024-03-20 22:58:37.428508 Sending a GET request to a:  https://www.prezunic.com.br/carnes-e-aves?page=4
+2024-03-20 22:58:40.060895 Execution time:  13.35
+2024-03-20 22:58:40.060920 Sending a GET request to a:  https://www.prezunic.com.br/carnes-e-aves?page=5
+2024-03-20 22:58:42.586747 Execution time:  15.87
+2024-03-20 22:58:42.586772 Sending a GET request to a:  https://www.prezunic.com.br/carnes-e-aves?page=6
+2024-03-20 22:58:45.626623 Execution time:  18.91
+2024-03-20 22:58:45.626654 Sending a GET request to a:  https://www.prezunic.com.br/carnes-e-aves?page=7

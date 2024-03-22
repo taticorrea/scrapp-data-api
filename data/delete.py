@@ -1,22 +1,20 @@
-import requests
-from pandas import read_csv
+from requests import request
 
 def delete(source:str):
-    # df = read_csv(f"data/{source}_data/itens_precos_{source}.csv", header=0,sep=';', engine='python')
-
     try:
-        for i in range(256):
-            url = f"http://127.0.0.1:8000/api/{source}/delete_item/{i}"
+        url = f"http://127.0.0.1:8000/api/v2/delete-item/?fonte={source}"
 
-            payload={}
-            headers = {}
+        payload={}
+        headers = {
+        'Content-Type': 'application/json'
+        }
 
-            response = requests.request("DELETE", url, headers=headers, data=payload)
-
-            print(response.text)
+        print("Sending a DELETE request to a: ", url)
+        response = request("DELETE", url, headers=headers, data=payload)
+        print('Response Code:', response.status_code)
     except:
-        pass
-sources = ["prezunic"]
+        pass    
 
+sources = ["Prezunic"]
 for source in sources:
     delete(source)
